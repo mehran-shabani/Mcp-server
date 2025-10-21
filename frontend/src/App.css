@@ -1,0 +1,134 @@
+:root {
+  color-scheme: light dark;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.app__header {
+  background: linear-gradient(120deg, #1f2937, #3b82f6);
+  color: #ffffff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app__subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.app__layout {
+  flex: 1;
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 35px -25px rgba(31, 41, 55, 0.45);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prompt-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.prompt-form__field select,
+.prompt-form__field textarea {
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  color: inherit;
+}
+
+.prompt-form__field textarea {
+  resize: vertical;
+}
+
+.prompt-form__submit {
+  align-self: flex-start;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prompt-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.prompt-form__submit:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px -16px rgba(37, 99, 235, 0.75);
+}
+
+.status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.status--error {
+  color: #dc2626;
+}
+
+.placeholder {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.response-viewer {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow: auto;
+  font-family: 'Source Code Pro', 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  max-height: 420px;
+}
+
+@media (max-width: 768px) {
+  .app__layout {
+    padding: 1.5rem;
+  }
+
+  .panel {
+    padding: 1.25rem;
+  }
+}
