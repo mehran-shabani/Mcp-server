@@ -16,11 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 from interactions.views import mcp_entrypoint
+from .views import serve_frontend
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("mcp/", mcp_entrypoint, name="mcp-entrypoint"),
+    path("", serve_frontend, name="frontend"),
+    re_path(r"^(?!admin/|mcp/|static/).*", serve_frontend, name="frontend-catchall"),
 ]
