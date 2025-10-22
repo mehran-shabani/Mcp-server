@@ -13,20 +13,37 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
+
+
+def str_to_bool(value: str | bool) -> bool:
+    if isinstance(value, bool):
+        return value
+    return value.lower() in {"1", "true", "t", "yes", "y", "on"}
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-@^@febiqu-_6$7ni#8f^%bgje&!47ufj^wfj=_y4q!cv)y@b_j"
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-@^@febiqu-_6$7ni#8f^%bgje&!47ufj^wfj=_y4q!cv)y@b_j",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str_to_bool(os.getenv("DJANGO_DEBUG", "True"))
 
-ALLOWED_HOSTS = []
+allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", "")
+if allowed_hosts:
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts.split(",") if host.strip()]
+else:
+    ALLOWED_HOSTS = ["*"] if DEBUG else []
 
 
 # Application definition
