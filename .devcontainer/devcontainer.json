@@ -1,0 +1,36 @@
+{
+  "name": "Mcp-server Codespace",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": ".devcontainer/post-create.sh",
+  "postAttachCommand": ".devcontainer/start-services.sh",
+  "forwardPorts": [8000, 5173],
+  "portsAttributes": {
+    "8000": {
+      "label": "Django API",
+      "onAutoForward": "silent"
+    },
+    "5173": {
+      "label": "Frontend UI",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.envFile": "${workspaceFolder}/.env"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
